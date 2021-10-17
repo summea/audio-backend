@@ -1,7 +1,11 @@
 <?php
 
+// ref: https://www.php.net/manual/en/pdo.sqlitecreatefunction
 $db = new PDO('sqlite:songs.db');
-$albumRows = $db->query('SELECT * FROM albums')->fetchAll();
+$albumRows = $db->query('
+    SELECT * FROM albums
+    ORDER BY releaseDate DESC
+')->fetchAll();
 $output['albums'] = [];
 foreach ($albumRows as $albumRow) {
     $albumData = [];
